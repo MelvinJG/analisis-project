@@ -9,6 +9,7 @@ class AvatarRoutes {
     }
     config() {
         this.router.get('/', avatarControllers_1.AvatarController.img);
+        this.router.get('/:id', avatarControllers_1.AvatarController.imgByID);
     }
 }
 const avatarRoutes = new AvatarRoutes();

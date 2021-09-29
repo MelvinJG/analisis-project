@@ -2,20 +2,29 @@ import { Request, Response } from 'express';
 import pool from '../database'; 
 
 class usersControllers {
+    public async getUsers(req: Request, res: Response){
+        const resp = await pool.query(`SELECT * FROM Users`);        
+        return res.json(resp);
+    }
+
+    public async getUser(req: Request, res: Response){
+        const resp = await pool.query(`SELECT * FROM Users WHERE userName = '${req.params.user}'`);        
+        return res.json(resp);
+    }
+
     public async login(req: Request, res: Response){
-        const resp = await pool.query(`SELECT * FROM Users WHERE userName = '${req.params.user}' AND pass = '${req.params.pass}'`);
-        console.log(typeof(resp));
+        const resp = await pool.query(`SELECT * FROM Users WHERE userName = '${req.params.user}' AND pass = '${req.params.pass}'`);        
         if(Object.keys(resp).length === 0) {
-            return res.status(404).json({text: "Error"});
+            return res.send(false);
         }
         else{
-            return res.json({text: "ENCONTRADO"});
+            return res.send(true);
         }
     }
 
-    public async register(req: Request, res: Response){
+    public async register(req: Request, res: Response) : Promise<void>{
         await pool.query('INSERT INTO Users SET ?',[req.body]);        
-        res.send({text: "REGISTER"});
+        res.json({ message: 'Register' });
     }
 
     public async delete(req: Request, res: Response){

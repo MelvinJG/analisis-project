@@ -21,5 +21,11 @@ class avatarControllers {
             res.json(avatars);
         });
     }
+    imgByID(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const avatar = yield database_1.default.query(`SELECT * FROM Avatars WHERE id = ${req.params.id}`);
+            return res.json(avatar);
+        });
+    }
 }
 exports.AvatarController = new avatarControllers();
