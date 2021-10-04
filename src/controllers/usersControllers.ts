@@ -3,7 +3,7 @@ import pool from '../database';
 
 class usersControllers {
     public async getUsers(req: Request, res: Response){
-        const resp = await pool.query(`SELECT * FROM Users`);        
+        const resp = await pool.query(`SELECT U.userName, A.img FROM Users U INNER JOIN Avatars A ON U.avatar = A.id WHERE U.id NOT IN ( SELECT idFriend FROM Friends WHERE userName = '${req.params.user}');`);        
         return res.json(resp);
     }
 

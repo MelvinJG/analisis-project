@@ -17,7 +17,7 @@ const database_1 = __importDefault(require("../database"));
 class usersControllers {
     getUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resp = yield database_1.default.query(`SELECT * FROM Users`);
+            const resp = yield database_1.default.query(`SELECT U.userName, A.img FROM Users U INNER JOIN Avatars A ON U.avatar = A.id WHERE U.id NOT IN ( SELECT idFriend FROM Friends WHERE userName = '${req.params.user}');`);
             return res.json(resp);
         });
     }

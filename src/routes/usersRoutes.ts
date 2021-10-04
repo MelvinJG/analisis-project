@@ -9,7 +9,7 @@ class UsersRoutes{
     }
 
     config(): void {
-        this.router.get('/',UsersController.getUsers);
+        this.router.get('/People/:user',UsersController.getUsers);
         this.router.get('/:user',UsersController.getUser);
         this.router.get('/Login/:user/:pass', UsersController.login);
         this.router.post('/Register', UsersController.register);
