@@ -14,6 +14,7 @@ class UsersRoutes {
         this.router.post('/Register', usersControllers_1.UsersController.register);
         this.router.delete('/Delete/:user', usersControllers_1.UsersController.delete);
         this.router.put('/Update/:user', usersControllers_1.UsersController.update);
+        this.router.get('/MyId/:userName', usersControllers_1.UsersController.MyIdUser);
     }
 }
 const usersRoutes = new UsersRoutes();

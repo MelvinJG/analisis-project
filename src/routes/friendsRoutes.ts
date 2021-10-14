@@ -12,6 +12,8 @@ class FriendsRoutes{
         this.router.get('/:userName',FriendsController.FriendsByUser);
         this.router.get('/Chat/:userName',FriendsController.Chat);
         this.router.post('/SendMesage',FriendsController.SendMesage);
+        this.router.get('/Solicitudes/:Myid',FriendsController.Solicitudes);
+        this.router.get('/EnviadaSolicitud/:userName',FriendsController.SolicitudesEnviadas);
     }
 }
 

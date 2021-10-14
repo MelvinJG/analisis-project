@@ -11,6 +11,7 @@ class AvatarRoutes{
     config(): void {
         this.router.get('/', AvatarController.img);
         this.router.get('/:id', AvatarController.imgByID);
+        this.router.get('/Name/:UserName', AvatarController.imgByUser);
     }
 }
 

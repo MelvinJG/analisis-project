@@ -37,5 +37,21 @@ class friendsControllers {
             res.json({ message: 'Send' });
         });
     }
+    Solicitudes(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const mensajes = yield database_1.default.query(`SELECT S.userName, A.img FROM Solicitudes S INNER JOIN 
+        Users U ON S.userName = U.userName INNER JOIN 
+        Avatars A ON U.avatar = A.id WHERE idFriend = '${req.params.Myid}'`);
+            return res.json(mensajes);
+        });
+    }
+    SolicitudesEnviadas(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const mensajes = yield database_1.default.query(`SELECT U.userName, A.img FROM Solicitudes S 
+        INNER JOIN Users U ON S.idFriend = U.id INNER JOIN Avatars A ON 
+        U.avatar = A.id WHERE S.userName = '${req.params.userName}'`);
+            return res.json(mensajes);
+        });
+    }
 }
 exports.FriendsController = new friendsControllers();

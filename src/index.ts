@@ -4,7 +4,8 @@ import cors from 'cors'
 
 import avatarRoutes from './routes/avatarRoutes';
 import usersRoutes from './routes/usersRoutes';
-import friendsRoutes from './routes/friendsRoutes'
+import friendsRoutes from './routes/friendsRoutes';
+import postRoutes from './routes/postRoutes';
 
 class Server {
     public app: Application;
@@ -26,6 +27,7 @@ class Server {
         this.app.use('/Avatars',avatarRoutes);
         this.app.use('/Users',usersRoutes);
         this.app.use('/Friends',friendsRoutes);
+        this.app.use('/Posts',postRoutes);
     }
 
     start(): void{

@@ -36,6 +36,11 @@ class usersControllers {
         await pool.query(`UPDATE Users SET ? WHERE userName = '${req.params.user}'`,[req.body]);
         res.send({text: "UPDATED"});
     }
+
+    public async MyIdUser(req: Request, res: Response){
+        const friends = await pool.query(`SELECT id FROM Users WHERE userName = '${req.params.userName}'`);
+        return res.json(friends);
+    }
 }
 
 export const UsersController = new usersControllers();
